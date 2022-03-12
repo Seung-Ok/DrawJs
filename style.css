@@ -57,7 +57,7 @@ button:active {
   justify-content: center;
 }
 
-.canvasCss {
+.canvas {
   background-color: var(--color-light-ivory);
   box-shadow: var(--box-shadow);
   border-radius: 3.5rem;
