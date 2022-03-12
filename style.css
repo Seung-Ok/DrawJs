@@ -1,0 +1,95 @@
+@import 'reset.css';
+:root {
+  /* Color */
+  --color-ivory: #f6e8ca;
+  --color-light-ivory: #fffff0;
+
+  /* Font-Size */
+  --font-large: 4rem;
+  --font-medium: 2.8rem;
+  --font-small: 2rem;
+
+  /* Font-Weight */
+  --font-bold: 800;
+
+  /* Shadow */
+  --box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+}
+
+/* Typography */
+html {
+  font-size: 62.5%;
+}
+
+/* Universal Tag */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+  background-color: var(--color-ivory);
+  padding: 1.2rem 1.6rem;
+  margin: 0 4rem;
+  border: 0.2rem solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  font-size: var(--font-small);
+  font-weight: var(--font-bold);
+}
+
+button:active {
+  transform: scale(0.9);
+}
+
+/* Canvas */
+.canvas__container {
+  display: flex;
+  justify-content: center;
+}
+
+.canvasCss {
+  background-color: var(--color-light-ivory);
+  box-shadow: var(--box-shadow);
+  border-radius: 3.5rem;
+  margin-top: 0.4rem;
+}
+
+.input {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.input__range {
+  width: 20rem;
+}
+
+.mode {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.colors {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.color {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  cursor: pointer;
+  margin: 0 1.2rem;
+}
