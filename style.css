@@ -8,7 +8,7 @@
   /* Font-Size */
   --font-large: 4rem;
   --font-medium: 2.8rem;
-  --font-small: 2rem;
+  --font-small: 1.5rem;
 
   /* Font-Weight */
   --font-bold: 700;
@@ -22,6 +22,8 @@
   --custom-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
     7px 7px 20px 0px rgba(0, 0, 0, 0.1),
     4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  --clock-shadow: 0 0 5px #a1c4fd, 0 0 25px #a1c4fd, 0 0 50px #03e9f4,
+    0 0 200px #03e9f4;
 }
 
 /* Typography */
@@ -55,14 +57,15 @@ button {
 /* Canvas */
 .canvas__container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .canvas {
   background-color: var(--color-light-ivory);
   box-shadow: var(--box-shadow);
   border-radius: 3.5rem;
-  margin-top: 0.4rem;
+  margin-top: 2rem;
 }
 
 .input {
@@ -92,7 +95,8 @@ button {
 }
 
 .mode__fill,
-.mode__save {
+.mode__save,
+.mode__reset {
   background: rgb(251, 33, 117);
   background: linear-gradient(
     0deg,
@@ -103,7 +107,8 @@ button {
 }
 
 .mode__fill:before,
-.mode__save:before {
+.mode__save:before,
+.mode__reset:before {
   position: absolute;
   content: '';
   display: inline-block;
@@ -116,13 +121,15 @@ button {
 }
 
 .mode__fill:hover,
-.mode__save:hover {
+.mode__save:hover,
+.mode__reset:hover {
   color: var(--color-black);
   opacity: 0.5;
 }
 
 .mode__fill:active,
-.mode__save:active {
+.mode__save:active,
+.mode__reset:active {
   box-shadow: var(--active-shadow);
 }
 
@@ -157,4 +164,16 @@ button {
   border-radius: 50%;
   cursor: pointer;
   margin: 0 1.2rem;
+}
+
+.clock {
+  margin: 2rem 0;
+  padding: 2rem 3rem;
+  letter-spacing: 0.2rem;
+  font-size: var(--font-small);
+  background: linear-gradient(to right, #2980b9, #6dd5fa, #ffffff);
+  color: var(--color-black);
+  border-radius: 2rem;
+  box-shadow: var(--clock-shadow);
+  -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }

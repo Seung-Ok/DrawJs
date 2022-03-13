@@ -7,13 +7,17 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     />
+    <meta name="author" content="Seung-Ok" />
+    <meta name="description" content="paintbrush" />
+    <link rel="icon" href="favicon.png" />
     <link rel="stylesheet" href="style.css" />
     <script src="main.js" defer></script>
     <title>Draw</title>
   </head>
   <body>
     <section class="canvas__container">
-      <canvas class="canvas" width="550px" height="550px"></canvas>
+      <p class="clock"></p>
+      <canvas class="canvas" width="760px" height="470px"></canvas>
     </section>
     <section class="colors__container">
       <div class="input">
@@ -28,6 +32,7 @@
       <div class="mode">
         <button class="custom mode__fill">Fill</button>
         <button class="custom mode__save">Save</button>
+        <button class="custom mode__reset">Reset</button>
       </div>
       <ul class="colors">
         <li class="color" style="background-color: #2c2c2c"></li>
