@@ -203,3 +203,46 @@ button {
   cursor: pointer;
   margin: 0 1.2rem;
 }
+
+/* Responsive Web */
+@media screen and (max-width: 768px) {
+  .canvas {
+    width: 35rem;
+  }
+
+  .toggleBtn {
+    margin: 0;
+    top: 0.5rem;
+    right: 0;
+  }
+
+  .clock {
+    width: 40%;
+    letter-spacing: 0;
+    padding: 1rem 2rem;
+    text-align: center;
+  }
+
+  .input {
+    margin-top: 4rem;
+  }
+
+  .tools {
+    margin-top: 4rem;
+  }
+
+  .colors {
+    flex-wrap: wrap;
+    margin-top: 4rem;
+  }
+
+  .color {
+    margin: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 510px) {
+  .clock {
+    width: 60%;
+  }
+}
