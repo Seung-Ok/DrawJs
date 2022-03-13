@@ -8,6 +8,8 @@ const modeFill = document.querySelector('.mode__fill');
 const modeSave = document.querySelector('.mode__save');
 const modeReset = document.querySelector('.mode__reset');
 const clock = document.querySelector('.clock');
+const dayOrNight = document.querySelector('.header__toggle');
+const body = document.querySelector('body');
 
 const CANVAS_WIDTH = 760;
 const CANVAS_HEIGHT = 470;
@@ -28,6 +30,7 @@ modeFill && modeFill.addEventListener('click', handleMode);
 modeSave && modeSave.addEventListener('click', handleSave);
 modeReset && modeReset.addEventListener('click', handleReset);
 clock && clock.addEventListener('load', realTimeClock());
+dayOrNight && dayOrNight.addEventListener('click', handleDayNight);
 
 function startPainting(event) {
   if (event.which != 1) {
@@ -115,4 +118,25 @@ function clockTo() {
 function realTimeClock() {
   clockTo();
   setInterval(clockTo, 1000);
+}
+
+function handleDayNight(event) {
+  const target = event.target;
+
+  if (event.target.classList.contains('header__toggle')) {
+    return;
+  }
+
+  body.classList.toggle('visible');
+  const onVisible = body.classList.contains('visible');
+
+  if (onVisible) {
+    target.classList.remove('fa-toggle-off');
+    target.classList.add('fa-toggle-on');
+    dayOrNight.style.color = 'black';
+  } else {
+    target.classList.remove('fa-toggle-on');
+    target.classList.add('fa-toggle-off');
+    dayOrNight.style.color = 'white';
+  }
 }

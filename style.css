@@ -4,6 +4,7 @@
   --color-light-ivory: #fffff0;
   --color-white: #ffffff;
   --color-black: #000000;
+  --color-grey: #3a3a3a;
 
   /* Font-Size */
   --font-large: 4rem;
@@ -176,4 +177,16 @@ button {
   border-radius: 2rem;
   box-shadow: var(--clock-shadow);
   -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+.header__toggle {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  background-color: transparent;
+  font-size: var(--font-large);
+}
+
+.visible {
+  background: var(--color-grey);
 }
