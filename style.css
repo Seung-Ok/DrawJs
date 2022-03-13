@@ -1,8 +1,9 @@
 @import 'reset.css';
 :root {
   /* Color */
-  --color-ivory: #f6e8ca;
   --color-light-ivory: #fffff0;
+  --color-white: #ffffff;
+  --color-black: #000000;
 
   /* Font-Size */
   --font-large: 4rem;
@@ -10,10 +11,17 @@
   --font-small: 2rem;
 
   /* Font-Weight */
-  --font-bold: 800;
+  --font-bold: 700;
 
   /* Shadow */
   --box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  --active-shadow: 4px 4px 6px 0 rgba(255, 255, 255, 0.3),
+    -4px -4px 6px 0 rgba(116, 125, 136, 0.2),
+    inset -4px -4px 6px 0 rgba(255, 255, 255, 0.2),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, 0.2);
+  --custom-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+    4px 4px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
 /* Typography */
@@ -36,19 +44,12 @@ body {
 }
 
 button {
-  all: unset;
   cursor: pointer;
-  background-color: var(--color-ivory);
-  padding: 1.2rem 1.6rem;
-  margin: 0 4rem;
-  border: 0.2rem solid rgba(0, 0, 0, 0.2);
-  border-radius: 0.5rem;
-  font-size: var(--font-small);
+  border: none;
+  outline: none;
+  color: var(--color-white);
   font-weight: var(--font-bold);
-}
-
-button:active {
-  transform: scale(0.9);
+  margin: 0 1.2rem;
 }
 
 /* Canvas */
@@ -78,6 +79,70 @@ button:active {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
+}
+
+.custom {
+  width: 10rem;
+  height: 4rem;
+  line-height: 4rem;
+  border-radius: 2rem;
+  position: relative;
+  display: inline-block;
+  box-shadow: var(--custom-shadow);
+}
+
+.mode__fill,
+.mode__save {
+  background: rgb(251, 33, 117);
+  background: linear-gradient(
+    0deg,
+    rgba(251, 33, 117, 1) 0%,
+    rgba(234, 76, 137, 1) 100%
+  );
+  overflow: hidden;
+}
+
+.mode__fill:before,
+.mode__save:before {
+  position: absolute;
+  content: '';
+  display: inline-block;
+  top: -18rem;
+  left: 0;
+  width: 3rem;
+  height: 100%;
+  background-color: var(--color-white);
+  animation: customBtn 2.5s ease-in-out infinite;
+}
+
+.mode__fill:hover,
+.mode__save:hover {
+  color: var(--color-black);
+  opacity: 0.5;
+}
+
+.mode__fill:active,
+.mode__save:active {
+  box-shadow: var(--active-shadow);
+}
+
+@-webkit-keyframes customBtn {
+  0% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0;
+  }
+  80% {
+    -webkit-transform: scale(0) rotate(45deg);
+    opacity: 0.5;
+  }
+  81% {
+    -webkit-transform: scale(4) rotate(45deg);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(50) rotate(45deg);
+    opacity: 0;
+  }
 }
 
 .colors {

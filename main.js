@@ -3,8 +3,8 @@
 const canvas = document.querySelector('.canvas');
 const colors = document.querySelectorAll('.color');
 const range = document.querySelector('.input__range');
-const mode = document.querySelector('.mode');
 const modeFill = document.querySelector('.mode__fill');
+const modeSave = document.querySelector('.mode__save');
 
 const CANVAS_SIZE = 550;
 
@@ -21,9 +21,14 @@ canvas && canvas.addEventListener('mouseleave', stopPainting);
 canvas && canvas.addEventListener('mousedown', handleCanvas);
 range && range.addEventListener('input', handleRange);
 modeFill && modeFill.addEventListener('click', handleMode);
+modeSave && modeSave.addEventListener('click', handleSave);
 
-function startPainting() {
-  painting = true;
+function startPainting(event) {
+  if (event.which != 1) {
+    return;
+  } else {
+    painting = true;
+  }
 }
 
 function stopPainting() {
@@ -73,4 +78,12 @@ function handleCanvas() {
   } else {
     return;
   }
+}
+
+function handleSave() {
+  const image = canvas.toDataURL('image/png');
+  const link = document.createElement('a');
+  link.href = image;
+  link.download = '🎨image🎨';
+  link.click();
 }
