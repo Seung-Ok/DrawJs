@@ -4,12 +4,16 @@ const canvasContainer = document.querySelector('.canvas__container');
 const canvas = document.querySelector('.canvas');
 const colors = document.querySelectorAll('.color');
 const range = document.querySelector('.input__range');
-const modeFill = document.querySelector('.mode__fill');
-const modeSave = document.querySelector('.mode__save');
-const modeReset = document.querySelector('.mode__reset');
+const toolFill = document.querySelector('.tools__fill');
+const toolSave = document.querySelector('.tools__save');
+const toolReset = document.querySelector('.tools__reset');
+const toolRevert = document.querySelector('.tools__revert');
 const clock = document.querySelector('.clock');
-const dayOrNight = document.querySelector('.header__toggle');
+const dayOrNight = document.querySelector('.toggleBtn');
 const body = document.querySelector('body');
+
+let revert = [];
+let index = 0;
 
 const CANVAS_WIDTH = 760;
 const CANVAS_HEIGHT = 470;
@@ -26,9 +30,10 @@ canvas && canvas.addEventListener('mouseup', stopPainting);
 canvas && canvas.addEventListener('mouseleave', stopPainting);
 canvas && canvas.addEventListener('mousedown', handleCanvas);
 range && range.addEventListener('input', handleRange);
-modeFill && modeFill.addEventListener('click', handleMode);
-modeSave && modeSave.addEventListener('click', handleSave);
-modeReset && modeReset.addEventListener('click', handleReset);
+toolFill && toolFill.addEventListener('click', handleFill);
+toolSave && toolSave.addEventListener('click', handleSave);
+toolReset && toolReset.addEventListener('click', handleReset);
+toolRevert && toolRevert.addEventListener('click', handleRevert);
 clock && clock.addEventListener('load', realTimeClock());
 dayOrNight && dayOrNight.addEventListener('click', handleDayNight);
 
@@ -40,7 +45,11 @@ function startPainting(event) {
   }
 }
 
-function stopPainting() {
+function stopPainting(event) {
+  if (event.type === 'mouseup') {
+    revert.push(ctx.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT));
+    index += 1;
+  }
   painting = false;
 }
 
@@ -71,13 +80,13 @@ function handleRange(event) {
   ctx.lineWidth = event.target.value;
 }
 
-function handleMode() {
+function handleFill() {
   if (filling) {
     filling = false;
-    modeFill.textContent = 'Fill';
+    toolFill.textContent = 'Fill';
   } else {
     filling = true;
-    modeFill.textContent = 'Paint';
+    toolFill.textContent = 'Paint';
   }
 }
 
@@ -99,6 +108,26 @@ function handleSave() {
 
 function handleReset() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  index = 0;
+  revert = [];
+}
+
+function handleRevert() {
+  if (index <= 0) {
+    handleReset();
+  } else {
+    oneTimeFunction();
+    ctx.putImageData(revert.pop(), 0, 0);
+    index -= 1;
+    console.log(index);
+    console.log(revert);
+  }
+}
+
+function oneTimeFunction() {
+  revert.pop();
+  index -= 1;
+  oneTimeFunction = function () {};
 }
 
 function clockTo() {
@@ -123,7 +152,7 @@ function realTimeClock() {
 function handleDayNight(event) {
   const target = event.target;
 
-  if (event.target.classList.contains('header__toggle')) {
+  if (event.target.classList.contains('toggleBtn')) {
     return;
   }
 
